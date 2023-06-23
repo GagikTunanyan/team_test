@@ -1,10 +1,35 @@
-import { Container, Copy } from "../../components";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { Container, Copy, Image, List } from "../../components";
+import Img1 from "../../assets/img1.jpg";
+import Img2 from "../../assets/img2.jpg";
+import Img3 from "../../assets/img3.jpg";
+import Img4 from "../../assets/img4.jpg";
+
 import styles from "./app.module.scss";
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash || location.hash === "") {
+      const element = document.querySelector(
+        location.hash === ""
+          ? "[data-autoscroll-id]"
+          : `[data-autoscroll-id='${location.hash.slice(1)}']`
+      );
+      if (element) {
+        const { top } = element.getBoundingClientRect();
+        const desiredTopPosition = window.pageYOffset + top - 90;
+        window.scrollTo({ top: desiredTopPosition, behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   return (
     <div className="App">
       <Container
+        hash=""
         title={<h1>Тестовое задание</h1>}
         left={
           <p className="p-l">
@@ -42,6 +67,7 @@ function App() {
           </p>
         }
         seperat="half"
+        hash="text_blocks"
       />
 
       <Container
@@ -61,6 +87,55 @@ function App() {
             статус спонтанно притягивает диктат потребителя. Сервисная стратегия
             индуцирует рекламоноситель. VIP-мероприятие, суммируя приведенные
             примеры, настроено позитивно.
+          </p>
+        }
+      >
+        <div className={styles.GalleryWrapper}>
+          <Image src={Img1} alt="img1" />
+          <Image src={Img2} alt="img2" />
+          <Image src={Img3} alt="img3" />
+          <Image src={Img4} alt="img4" />
+        </div>
+      </Container>
+
+      <Container
+        title={<h3>Второй статичный блок</h3>}
+        left={
+          <div>
+            <p className="p">
+              Продукт, на первый взгляд, индуцирует конструктивный традиционный
+              канал. Наряду с этим, начальная стадия проведения исследования
+              изоморфна времени. Макет по-прежнему устойчив к изменениям спроса.
+            </p>
+            <List
+              mode="circle"
+              items={[
+                "Маркетинг довольно хорошо сбалансирован",
+                "Поисковая реклама индуцирует повседневный потребительский рынок",
+                "Рекламная заставка программирует нишевый проект",
+                "Согласно предыдущему, стратегическое планирование синхронизирует сублимированный выставочный стенд. Рекламная заставка программирует нишевый проект. Рекламное сообщество тормозит ролевой пресс-клиппинг, невзирая на действия конкурентов. ",
+                "Искусство медиапланирования масштабирует инвестиционный продукт",
+              ]}
+            />
+            <p className="p">Еще может быть нумерованный список:</p>
+            <List
+              mode="number"
+              items={[
+                "Маркетинг довольно хорошо сбалансирован",
+                "Поисковая реклама индуцирует повседневный потребительский рынок",
+                "Рекламная заставка программирует нишевый проект",
+                "Согласно предыдущему, стратегическое планирование синхронизирует сублимированный выставочный стенд. Рекламная заставка программирует нишевый проект. Рекламное сообщество тормозит ролевой пресс-клиппинг, невзирая на действия конкурентов. ",
+                "Искусство медиапланирования масштабирует инвестиционный продукт",
+              ]}
+            />
+          </div>
+        }
+        right={
+          <p className={`p ${styles.OpacityText} ${styles.PositionUpRight}`}>
+            Рекламный макет, согласно Ф.Котлеру, развивает связанный процесс
+            стратегического планирования. Воздействие на потребителя,
+            пренебрегая деталями, настроено позитивно. Медийная связь тормозит
+            BTL.
           </p>
         }
       />

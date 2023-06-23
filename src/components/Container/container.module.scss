@@ -11,15 +11,15 @@
     column-gap: 20px;
     margin-bottom: 55px;
     &.Half {
-        > :first-child, > :last-child {
+        > .Left, > .Right {
             width: 50%;
         }
     }
     .Left {
-      width: calc(100% - 30% + 90px);
+      width: calc(100% - 25% + 110px);
     }
     .Right {
-      width: calc(100% + 60px - 70%);
+      width: calc(100% + 30px - 75%);
     }
   }
   @media (max-width: 800px) {

@@ -1,0 +1,27 @@
+.List {
+    list-style: none;
+    padding: 0 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    row-gap: 11px;
+    li {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        column-gap: 30px;
+        > .circle {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 5px solid var(--primary-basic);
+            box-sizing: border-box;
+        }
+        > .number {
+            color: var(--primary-basic);
+        }
+        > :last-child {
+            width: calc(100% - 46px);
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.Toast {
+  position: fixed;
+  max-width: 310px;
+  width: 100%;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px;
+  animation-name: slideIn;
+  animation-duration: 0.1s;
+  animation-fill-mode: forwards;
+  left: 0;
+  right: 0;
+  margin: auto;
+  > p {
+    color: var(--white);
+  }
+  &.success {
+    background-color: var(--success);
+  }
+  &.info {
+    background-color: var(--info);
+  }
+  &.warning {
+    background-color: var(--warning);
+  }
+  &.error {
+    background-color: var(--error);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    top: -64px;
+  }
+  100% {
+    top: 5px;
+  }
+}

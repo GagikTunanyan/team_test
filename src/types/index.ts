@@ -5,3 +5,6 @@ export * from "./PropTypes/navigation.types";
 export * from "./PropTypes/link.types";
 export * from "./PropTypes/container.types";
 export * from "./PropTypes/copy.types";
+export * from "./PropTypes/toast.types";
+export * from "./PropTypes/image.types";
+export * from "./PropTypes/list.types";
