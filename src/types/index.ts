@@ -8,3 +8,4 @@ export * from "./PropTypes/copy.types";
 export * from "./PropTypes/toast.types";
 export * from "./PropTypes/image.types";
 export * from "./PropTypes/list.types";
+export * from "./PropTypes/quote.types";

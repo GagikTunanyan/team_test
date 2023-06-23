@@ -1,0 +1,17 @@
+.Quote {
+    box-sizing: border-box;
+    border-left: 4px solid;
+    padding: 18px 0 18px 38px;
+    &.info {
+        border-color: var(--primary-basic);
+    }
+    &.success {
+        border-color: var(--success);
+    }
+    &.warning {
+        border-color: var(--warning);
+    }
+    &.error {
+        border-color: var(--error);
+    }
+}

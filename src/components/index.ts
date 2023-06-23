@@ -9,3 +9,4 @@ export * as Icons from "./Icons";
 export { Toast } from "./Toast";
 export { Image } from "./Image";
 export { List } from "./Lists";
+export { Quote } from "./Quote"
