@@ -1,0 +1,12 @@
+@import "../../variables";
+
+.Link {
+    color: var(--primary-basic);
+    text-decoration: none;
+    font-size: map-get($p-bold, font-size );
+    font-weight: map-get($p-bold, font-weight );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}

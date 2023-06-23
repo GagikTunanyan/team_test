@@ -1,0 +1,33 @@
+@import "../../variables";
+
+.Button {
+  width: 150px;
+  background-color: var(--primary-basic);
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: 0.1s;
+  padding: 0.25rem 0.75rem;
+  box-sizing: border-box;
+  width: fit-content;
+  min-width: 120px;
+  &.normal {
+    font-size: map-get($p-bold, font-size);
+    font-weight: map-get($p-bold, font-weight);
+    min-height: 50px;
+  }
+  &.large {
+    font-size: map-get($p-l-bold, font-size);
+    font-weight: map-get($p-l-bold, font-weight);
+    min-height: 60px;
+  }
+  &:hover {
+    background-color: var(--primary-dark);
+  }
+  &.Disabled {
+    background-color: var(--primary-opacity);
+  }
+}

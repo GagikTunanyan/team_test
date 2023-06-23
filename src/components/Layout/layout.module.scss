@@ -1,0 +1,12 @@
+@import "../../variables";
+
+.LayoutParent {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  .Layout {
+    max-width: map-get($layout, max-width);
+    width: 100%;
+  }
+}

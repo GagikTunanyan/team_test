@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  * {
+    font-family: "Montserrat", "Inter", sans-serif;
+  }
+}
+
+:root {
+  --black: #333333;
+  --primary-basic: #00a4f7;
+  --primary-dark: #128ace;
+  --primary-opacity: #00a4f740;
+  --white: #ffffff;
+  --small-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+  font-size: 54px;
+  font-weight: 800;
+  color: var(--black);
+  @media (max-width: 800px) {
+    font-size: 32px;
+  }
+}
+h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--black);
+  @media (max-width: 800px) {
+    font-size: 30px;
+  }
+}
+h3 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--black);
+  &.mobile {
+    font-size: 26px;
+  }
+  @media (max-width: 800px) {
+    font-size: 26px;
+  }
+}
+h4 {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--black);
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
+}

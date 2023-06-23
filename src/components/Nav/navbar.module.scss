@@ -1,0 +1,42 @@
+@import "../../variables";
+
+.Navbar {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-shadow: var(--small-shadow);
+  box-sizing: border-box;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .Left, .Right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 40px;
+  }
+  .Logo {
+    margin-right: 20%;
+  }
+  > ul {
+    max-width: map-get($layout, max-width);
+    width: 100%;
+    padding: 0 30px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    column-gap: 20px;
+    > :first-child {
+      width: calc(70% + 30px);
+    }
+    > :last-child {
+      width: calc(30% + 30px);
+    }
+  }
+}
