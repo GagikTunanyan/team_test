@@ -13,7 +13,8 @@
     padding: 0;
     margin: 0;
   }
-  .Left, .Right {
+  .Left,
+  .Right {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -21,6 +22,7 @@
   }
   .Logo {
     margin-right: 20%;
+    cursor: pointer;
   }
   > ul {
     max-width: map-get($layout, max-width);
@@ -33,10 +35,10 @@
     box-sizing: border-box;
     column-gap: 20px;
     > :first-child {
-      width: calc(70% + 30px);
+      width: calc(100% + 60px - 30%);
     }
     > :last-child {
-      width: calc(30% + 30px);
+      width: calc(100% + 60px - 70%);
     }
   }
 }

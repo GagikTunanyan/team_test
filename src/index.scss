@@ -12,12 +12,15 @@ body {
   --primary-opacity: #00a4f740;
   --white: #ffffff;
   --small-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.05);
+  --grey-dark: #adadad;
+  --additional: #fff2c3;
 }
 
 h1 {
   font-size: 54px;
   font-weight: 800;
   color: var(--black);
+  margin: 46px 0 30px;
   @media (max-width: 800px) {
     font-size: 32px;
   }
@@ -26,6 +29,7 @@ h2 {
   font-size: 48px;
   font-weight: 700;
   color: var(--black);
+  margin: 0;
   @media (max-width: 800px) {
     font-size: 30px;
   }
@@ -34,6 +38,7 @@ h3 {
   font-size: 40px;
   font-weight: 700;
   color: var(--black);
+  margin: 0;
   &.mobile {
     font-size: 26px;
   }
@@ -45,7 +50,53 @@ h4 {
   font-size: 30px;
   font-weight: 700;
   color: var(--black);
+  margin: 0;
   @media (max-width: 800px) {
     font-size: 20px;
   }
+}
+
+.p-bold {
+  font-weight: 700 !important;
+}
+.p-italic {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.p-s {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 160%;
+  margin: 0;
+}
+
+.p {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0;
+  line-height: 160%;
+}
+
+.p-l {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+  margin: 0;
+  line-height: 160%;
+}
+
+.caps-small {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--black);
+}
+.caps-big {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
+  color: var(--black);
 }
