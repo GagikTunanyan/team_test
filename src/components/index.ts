@@ -11,3 +11,4 @@ export { Image } from "./Image";
 export { List } from "./Lists";
 export { Quote } from "./Quote";
 export { Table } from "./Table";
+export { Modal } from "./Modal";

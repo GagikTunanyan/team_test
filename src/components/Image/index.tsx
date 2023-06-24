@@ -25,16 +25,14 @@ export const Image: React.FC<ImagePropTypes> = ({
         onLoad={handleImageLoad}
       />
       {!!desc && (
-        <div className={styles.Desc}>
-          <p
-            className="p-bold p-l"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClickDesc?.(e, desc);
-            }}
-          >
-            {desc}
-          </p>
+        <div
+          className={styles.Desc}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClickDesc?.(e, desc);
+          }}
+        >
+          <p className="p-bold p-l">{desc}</p>
         </div>
       )}
     </div>

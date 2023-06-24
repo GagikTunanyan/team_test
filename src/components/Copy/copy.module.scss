@@ -1,16 +1,23 @@
 .Copy {
-    width: 100%;
-    height: 44px;
-    padding: 0 17px;
-    background-color: var(--additional);
+  width: 100%;
+  height: 44px;
+  padding: 0 17px;
+  background-color: var(--additional);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 8px;
+  cursor: pointer;
+  > :first-child {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  > p {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    border-radius: 8px;
-    cursor: pointer;
-    > p {
-        display: flex;
-        align-items: center;
-    }
+  }
 }

@@ -1,6 +1,14 @@
 import { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Copy, Image, List, Quote, Table } from "../../components";
+import {
+  Container,
+  Copy,
+  Image,
+  List,
+  Quote,
+  Table,
+  Modal,
+} from "../../components";
 import { tableData, images } from "../../utils/contsants";
 import { morePhotos } from "../../utils";
 import styles from "./app.module.scss";
@@ -8,6 +16,7 @@ import styles from "./app.module.scss";
 function App() {
   const location = useLocation();
   const [displayedCount, setDisplayedCount] = useState(6);
+  const [zoomImage, setZoomImage] = useState(-1);
   const initialGallery = useMemo(
     () => images.slice(0, displayedCount),
     [displayedCount]
@@ -209,6 +218,7 @@ function App() {
                     : undefined
                 }
                 onClickDesc={() => setDisplayedCount(displayedCount + 6)}
+                onClickImg={() => setZoomImage(indx)}
               />
             ))}
           </div>
@@ -237,6 +247,18 @@ function App() {
           </p>
         </div>
       </Container>
+      <Modal
+        isOpen={zoomImage !== -1}
+        onClose={() => setZoomImage(-1)}
+        contentClassName={styles.ZoomImage}
+      >
+        <div>
+          <Image
+            src={initialGallery[zoomImage]?.src}
+            alt={initialGallery[zoomImage]?.alt}
+          />
+        </div>
+      </Modal>
     </div>
   );
 }

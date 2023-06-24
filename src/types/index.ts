@@ -10,3 +10,4 @@ export * from "./PropTypes/image.types";
 export * from "./PropTypes/list.types";
 export * from "./PropTypes/quote.types";
 export * from "./PropTypes/table.types";
+export * from "./PropTypes/modal.types";
