@@ -1,15 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Copy, Image, List, Quote } from "../../components";
-import Img1 from "../../assets/img1.jpg";
-import Img2 from "../../assets/img2.jpg";
-import Img3 from "../../assets/img3.jpg";
-import Img4 from "../../assets/img4.jpg";
-
+import { Container, Copy, Image, List, Quote, Table } from "../../components";
+import { tableData, images } from "../../utils/contsants";
+import { morePhotos } from "../../utils";
 import styles from "./app.module.scss";
 
 function App() {
   const location = useLocation();
+  const [displayedCount, setDisplayedCount] = useState(6);
+  const initialGallery = useMemo(
+    () => images.slice(0, displayedCount),
+    [displayedCount]
+  );
 
   useEffect(() => {
     if (location.hash || location.hash === "") {
@@ -91,10 +93,9 @@ function App() {
         }
       >
         <div className={styles.GalleryWrapper}>
-          <Image src={Img1} alt="img1" />
-          <Image src={Img2} alt="img2" />
-          <Image src={Img3} alt="img3" />
-          <Image src={Img4} alt="img4" />
+          {images.slice(0, 4).map((img) => (
+            <Image src={img.src} alt={img.alt} key={img.alt} />
+          ))}
         </div>
       </Container>
 
@@ -172,9 +173,70 @@ function App() {
               экзистенциализм, таким образом, второй комплекс движущих сил
               получил разработку.
             </p>
+            <div className={styles.TableBlock}>
+              <Table
+                head={tableData.head}
+                body={tableData.body}
+                className={styles.HomeTable}
+              />
+            </div>
           </div>
         }
       />
+
+      <Container
+        title={<h2>Галерея с изображениями</h2>}
+        left={
+          <p className="p-l">
+            Все просто. Выводится столько фотографий сколько влезит на экран. Те
+            что не влезли рассчитываются и выводится их количество над последней
+            фотографией. По клику на эту подпись так же открывается увеличенное
+            версия того изображения, над которым выводится подпись.
+          </p>
+        }
+        hash="gallery"
+      >
+        <div className={styles.GallerySection}>
+          <div className={styles.Gallery}>
+            {initialGallery.map((img, indx) => (
+              <Image
+                src={img.src}
+                alt={img.alt}
+                key={img.alt}
+                desc={
+                  indx === initialGallery.length - 1
+                    ? morePhotos.checkMore(initialGallery, images)
+                    : undefined
+                }
+                onClickDesc={() => setDisplayedCount(displayedCount + 6)}
+              />
+            ))}
+          </div>
+
+          <p className="p w-80">
+            Для того, чтобы на странице мы выводили изображение фактического
+            нужного размера, а не просто уменьшали заведомо большее изображения,
+            есть такая возможность:
+          </p>
+          <div className="w-80">
+            <Copy
+              value={
+                "https://test.vasya.ru/api/crop/media/uploads/gallery/gallery/6.jpeg?geometry=420x240&crop=center"
+              }
+            >
+              https://test.vasya.ru/api/crop/media/uploads/gallery/gallery/6.jpeg?geometry=420x240&crop=center
+            </Copy>
+          </div>
+
+          <p className="p-s w-80">
+            В параметре <strong className="p-bold">geometry</strong> можно
+            задать размеры для изображения, а в crop выбрать тип кадрирования{" "}
+            <strong className="p-bold">(center, top, bottom)</strong> или вообще
+            его не указывать и тогда изображение пропорционально будет «вписано»
+            в указнные размеры.
+          </p>
+        </div>
+      </Container>
     </div>
   );
 }

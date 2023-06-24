@@ -18,6 +18,8 @@ body {
   --info: #108ee9;
   --error: #ea4f24;
   --warning: #f56a00;
+  --grey-light: #dadada;
+  --grey-light-opacity: #242424ad;
 }
 
 h1 {
@@ -103,4 +105,7 @@ h4 {
   letter-spacing: 3.2px;
   text-transform: uppercase;
   color: var(--black);
+}
+.w-80 {
+  width: 80%;
 }
