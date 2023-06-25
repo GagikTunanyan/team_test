@@ -1,6 +1,6 @@
 .Toast {
   position: fixed;
-  max-width: 310px;
+  max-width: 350px;
   width: 100%;
   min-height: 64px;
   display: flex;
@@ -13,7 +13,8 @@
   left: 0;
   right: 0;
   margin: auto;
-  z-index: 2;
+  z-index: 3;
+  column-gap: 15px;
   > p {
     color: var(--white);
   }
@@ -28,6 +29,13 @@
   }
   &.error {
     background-color: var(--error);
+  }
+  &.empty {
+    background-color: var(--white);
+    > p {
+      color: var(--black);
+    }
+    border: 1px solid var(--primary-basic);
   }
 }
 

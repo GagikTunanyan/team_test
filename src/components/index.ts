@@ -12,3 +12,5 @@ export { List } from "./Lists";
 export { Quote } from "./Quote";
 export { Table } from "./Table";
 export { Modal } from "./Modal";
+export * from "./Inputes";
+export { Footer } from "./Footer"

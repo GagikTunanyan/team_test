@@ -1,7 +1,7 @@
 @import "../../variables";
 
 .Button {
-  width: 150px;
+  min-width: 150px;
   background-color: var(--primary-basic);
   border-radius: 8px;
   border: none;
@@ -14,6 +14,12 @@
   box-sizing: border-box;
   width: fit-content;
   min-width: 120px;
+  cursor: pointer;
+  &.Outline {
+    border: 2px solid var(--primary-basic);
+    color: var(--primary-basic);
+    background-color: var(--white);
+  }
   &.normal {
     font-size: map-get($p-bold, font-size);
     font-weight: map-get($p-bold, font-weight);
@@ -26,6 +32,7 @@
   }
   &:hover {
     background-color: var(--primary-dark);
+    color: var(--white);
   }
   &.Disabled {
     background-color: var(--primary-opacity);

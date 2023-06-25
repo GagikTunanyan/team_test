@@ -1,0 +1,113 @@
+.Input,
+.TextArea {
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 3px;
+  :global(.error) {
+    color: var(--error);
+  }
+  &.Error {
+    > input,
+    > textarea {
+      border-color: var(--error);
+      color: var(--error);
+      &::placeholder {
+        color: var(--error);
+      }
+      &:focus {
+        border-color: var(--error);
+      }
+    }
+  }
+  .Area {
+    padding: 16px;
+    min-height: 130px;
+    resize: none;
+  }
+  > input,
+  > textarea {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid var(--grey-dark);
+    background-color: var(--white);
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 18px;
+    ::placeholder {
+      color: var(--grey-dark);
+    }
+    &.BoldText {
+      font-weight: 700;
+    }
+    &:focus {
+      outline: none;
+      border: 2px solid var(--primary-basic);
+    }
+    &.normal {
+      height: 40px;
+    }
+    &.big {
+      height: 50px;
+    }
+  }
+}
+
+.CheckboxWrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    column-gap: 13px;
+    cursor: pointer;
+    user-select: none;
+    > :nth-child(2) {
+        width: calc(100% - 25px);
+    }
+  .Checkbox {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--grey-dark);
+    background-color: var(--white);
+    border-radius: 5px;
+    position: relative;
+    transition: 0.2s;
+    &.Checked {
+      background-color: var(--primary-basic);
+      border-color: var(--primary-basic);
+      &:hover:not(.Disabled) {
+        background-color: var(--white);
+        border-color: var(--grey-dark);
+        &::after {
+          content: "";
+          border-right: 2px solid var(--grey-dark);
+          border-bottom: 2px solid var(--grey-dark);
+        }
+      }
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 7.5px;
+        box-sizing: border-box;
+        margin: auto;
+        width: 7.5px;
+        height: 15px;
+        border-right: 2px solid var(--white);
+        border-bottom: 2px solid var(--white);
+        transform: rotate(40deg);
+      }
+    }
+    &.Disabled {
+        opacity: 0.25;
+    }
+  }
+}

@@ -9,6 +9,7 @@ export const Toast: React.FC<ToastPropTypes> = ({
   text,
   onClose,
   config,
+  icon,
 }) => {
   const toastRef = useRef(null);
 
@@ -30,6 +31,7 @@ export const Toast: React.FC<ToastPropTypes> = ({
 
   return createPortal(
     <div className={cs} ref={toastRef} onClick={handleToastClick}>
+      {!!icon && <div className={styles.Icon}>{icon}</div>}
       <p className="p p-bold">{text}</p>
     </div>,
     document.body

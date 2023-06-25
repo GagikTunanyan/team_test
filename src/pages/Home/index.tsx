@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, ChangeEvent, FocusEvent } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Container,
@@ -8,9 +8,16 @@ import {
   Quote,
   Table,
   Modal,
+  Input,
+  TextArea,
+  Button,
+  Toast,
+  Icons,
+  CheckBox,
 } from "../../components";
 import { tableData, images } from "../../utils/contsants";
-import { morePhotos } from "../../utils";
+import { morePhotos, regexpList } from "../../utils";
+import { ToastModes } from "../../types";
 import styles from "./app.module.scss";
 
 function App() {
@@ -21,6 +28,62 @@ function App() {
     () => images.slice(0, displayedCount),
     [displayedCount]
   );
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+    privacy_policy_agreement: false,
+  });
+  const [error, setError] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+  const [toast, setToast] = useState<{
+    show: boolean;
+    mode: ToastModes;
+    text: React.ReactNode;
+  }>({
+    show: false,
+    mode: "empty",
+    text: "Письмо для активации аккаунта успешно отправлено на адрес электронной почты, который вы указали при регистрации.",
+  });
+
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const key = event.target.name;
+    setFormData({ ...formData, [key]: event.target.value });
+  };
+
+  const handleBlur = (
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
+  ) => {
+    const mapDisplayValue = {
+      email: "электронной почты",
+      phone: "телефон (+37498888888)",
+      name: "имя",
+    };
+    const type = event.target.name;
+    if (event.target.value === "") {
+      setError({ ...error, [type]: "Пожалуйста, заполните это поле." });
+      return;
+    }
+
+    if (
+      !!regexpList[type as keyof typeof regexpList] &&
+      !regexpList[type as keyof typeof regexpList]?.test?.(event.target.value)
+    ) {
+      setError({
+        ...error,
+        [type]: `Неверный формат ${
+          mapDisplayValue[type as keyof typeof mapDisplayValue]
+        }`,
+      });
+    } else setError({ ...error, [type]: "" });
+  };
 
   useEffect(() => {
     if (location.hash || location.hash === "") {
@@ -36,6 +99,37 @@ function App() {
       }
     }
   }, [location]);
+
+  const checkValidation = () => {
+    let valid: boolean[] = [];
+    const { privacy_policy_agreement, ...restFormData } = formData;
+    if (!privacy_policy_agreement) return true;
+
+    Object.keys(restFormData).forEach((k) => {
+      if (!!regexpList[k as keyof typeof regexpList]) {
+        valid.push(
+          !regexpList[k as keyof typeof regexpList]?.test(
+            restFormData[k as keyof typeof restFormData]
+          )
+        );
+        return;
+      }
+      valid.push(!restFormData[k as keyof typeof restFormData].length);
+    });
+    return valid.includes(true);
+  };
+
+  const handleSubmit = () => {
+    setToast({ ...toast, show: true });
+    const { privacy_policy_agreement, ...restFormData } = formData;
+    const obj = { ...restFormData };
+
+    Object.keys(formData).forEach((k) => {
+      obj[k as keyof typeof obj] = "";
+    });
+
+    setFormData({ ...obj, privacy_policy_agreement: false });
+  };
 
   return (
     <div className="App">
@@ -102,8 +196,8 @@ function App() {
         }
       >
         <div className={styles.GalleryWrapper}>
-          {images.slice(0, 4).map((img) => (
-            <Image src={img.src} alt={img.alt} key={img.alt} />
+          {images.slice(0, 4).map((img, indx) => (
+            <Image src={img.src} alt={img.alt} key={img.alt} onClickImg={() => setZoomImage(indx)} />
           ))}
         </div>
       </Container>
@@ -247,6 +341,104 @@ function App() {
           </p>
         </div>
       </Container>
+
+      <div className={styles.FormSection} data-autoscroll-id="form">
+        <div className={styles.FormImage}>
+          <Image src="/images/img.jpg" alt="img" />
+        </div>
+        <div className={styles.FormWrapper}>
+          <h2>Форма с приветами</h2>
+
+          <div className={styles.InnerContainer}>
+            <Input
+              placeholder="Ваше имя"
+              inputSize="big"
+              value={formData.name}
+              name="name"
+              onChange={handleChange}
+              error={error.name}
+              type="text"
+              onBlur={handleBlur}
+            />
+            <p className="p">
+              Имя нас не сильно волнует и это поле необязательное
+            </p>
+          </div>
+
+          <div className={styles.InnerContainer}>
+            <Input
+              placeholder="Телефон"
+              boldText={true}
+              inputSize="big"
+              value={formData.phone}
+              name="phone"
+              onChange={handleChange}
+              error={error.phone}
+              onBlur={handleBlur}
+            />
+            <p className="p">Для телефона нужна маска для ввода</p>
+          </div>
+
+          <div className={styles.InnerContainer}>
+            <Input
+              placeholder="Электронная почта"
+              boldText={true}
+              inputSize="big"
+              value={formData.email}
+              name="email"
+              onChange={handleChange}
+              error={error.email}
+              type="email"
+              onBlur={handleBlur}
+            />
+            <p className="p">
+              Почту нужно валидировать, что пользователь точно указал адекватный
+              и похожий на настоящий адрес
+            </p>
+          </div>
+
+          <div className={styles.InnerContainer}>
+            <TextArea
+              placeholder="Сообщение"
+              name="message"
+              boldText={true}
+              value={formData.message}
+              error={error.message}
+              onBlur={handleBlur}
+              onChange={handleChange}
+            />
+            <p className="p">Без сообщения форму отправлять бессмысленно</p>
+          </div>
+
+          <div className={styles.InnerContainer}>
+            <div className={styles.PrivacePolicy}>
+              <CheckBox
+                value={formData.privacy_policy_agreement}
+                label="Согласен с правилами обработки моих персональных данных"
+                onChange={(v: boolean) =>
+                  setFormData({ ...formData, privacy_policy_agreement: v })
+                }
+              />
+            </div>
+            <p className="p">
+              Форма отправляется только, если отметка с согласием стоит
+            </p>
+          </div>
+
+          <div className={styles.InnerContainer}>
+            <div className={styles.SubmitBtn}>
+              <Button disabled={checkValidation()} onClick={handleSubmit}>
+                Отправить сообщение
+              </Button>
+            </div>
+            <p className="p">
+              У кнопки несколько состояний. Яркой и синей она становится когда
+              все нормально и форму можно отправлять.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <Modal
         isOpen={zoomImage !== -1}
         onClose={() => setZoomImage(-1)}
@@ -259,6 +451,16 @@ function App() {
           />
         </div>
       </Modal>
+
+      {!!toast.show && (
+        <Toast
+          mode={toast.mode}
+          text={toast.text}
+          onClose={() => setToast({ ...toast, show: false })}
+          config={{ autoclose: true, time: 2000 }}
+          icon={<Icons.Success />}
+        />
+      )}
     </div>
   );
 }

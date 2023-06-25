@@ -89,12 +89,87 @@
   }
 }
 .ZoomImage {
-    width: 50%;
-    height: fit-content;
-    @media (max-width: 850px) {
-        width: 80%;
+  width: 50%;
+  height: fit-content;
+  @media (max-width: 850px) {
+    width: 80%;
+  }
+  @media (max-width: 650px) {
+    width: 90%;
+  }
+}
+.FormSection {
+  max-width: 1440px;
+  width: 100%;
+  margin: 110px auto 0;
+  background: var(--super-light, #faf9fa);
+  padding: 0 60px 45px;
+  min-height: 780px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  .FormImage {
+    width: 445px;
+    margin-left: -60px;
+  }
+  .FormWrapper {
+    z-index: 1;
+    margin-left: -65px;
+    margin-top: 135px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 5px;
+    > h2 {
+      margin-bottom: 20px;
+      width: 100%;
     }
-    @media (max-width: 650px) {
-        width: 90%;
+    .InnerContainer {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-start;
+      column-gap: 45px;
+      width: 100%;
+      .PrivacePolicy {
+        margin-top: 35px;
+      }
+      .SubmitBtn {
+        margin-top: 15px;
+      }
+      > * {
+        width: 50%;
+      }
+      > p {
+        color: var(--grey-dark);
+      }
     }
+  }
+  @media (max-width: 800px) {
+    flex-direction: column;
+    min-height: 1000px;
+    .FormWrapper {
+      margin-top: 0;
+      margin-left: 0;
+      position: absolute;
+      width: calc(100% - 120px);
+      top: 5%;
+    }
+  }
+  @media (max-width: 650px) {
+    min-height: 1100px;
+    .InnerContainer {
+      flex-direction: column;
+      > * {
+        width: 100% !important;
+      }
+    }
+  }
+  @media (max-width: 450px) {
+    min-height: 1400px;
+  }
 }

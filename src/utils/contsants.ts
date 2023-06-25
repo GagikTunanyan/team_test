@@ -5,6 +5,11 @@ export const navigations = {
     { hash: "gallery", text: "Галерея" },
   ],
   right: [{ hash: "form", text: "Форма с приветами", icon: "👋" }],
+  footer: [
+    { hash: "text_blocks", text: "Текстовые блоки" },
+    { hash: "gallery", text: "Галерея" },
+    { hash: "form", text: "Форма" },
+  ],
 };
 
 export const tableData = {

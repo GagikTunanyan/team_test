@@ -1,0 +1,71 @@
+.Footer {
+  width: 100%;
+  background-color: var(--super-light);
+  max-width: 1440px;
+  margin: auto;
+  padding: 0 60px;
+  box-sizing: border-box;
+  > div {
+    padding: 50px 0 30px;
+    border-top: 1px solid var(--grey-dark);
+    border-bottom: 3px solid var(--primary-basic);
+    > .Contacts {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      > .Left {
+        display: flex;
+        align-items: flex-start;
+        width: 50%;
+        justify-content: space-between;
+        > div {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          row-gap: 10px;
+        }
+      }
+    }
+    > .Nav {
+      margin-top: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 40px;
+      position: relative;
+      .Prod {
+        position: absolute;
+        right: 30px;
+      }
+    }
+  }
+  @media (max-width: 750px) {
+    .Nav {
+      margin-top: 33px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      row-gap: 20px;
+      .Prod {
+        position: initial !important;
+        right: 0;
+      }
+    }
+    .Contacts {
+        flex-direction: column;
+        row-gap: 20px;
+        > .Left {
+            width: 100% !important;
+            column-gap: 10px;
+        }
+        > .Right {
+            width: 100%;
+            > button {
+                width: 100%;
+            }
+        }
+    }
+  }
+}
